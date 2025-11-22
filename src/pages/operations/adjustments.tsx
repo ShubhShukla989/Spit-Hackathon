@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button';
-import { Table } from '../../components/Table';
 import { Modal } from '../../components/Modal';
 import { Input } from '../../components/Input';
 import { Select } from '../../components/Select';
@@ -9,11 +8,11 @@ import { useUIStore } from '../../stores/uiStore';
 import { getProducts, getLocations, createStockAdjustment } from '../../services/supabaseApi';
 
 export const AdjustmentsPage: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { addNotification } = useUIStore();
   const [products, setProducts] = useState<any[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     product_id: '',
@@ -37,7 +36,7 @@ export const AdjustmentsPage: React.FC = () => {
     } catch (error: any) {
       addNotification('error', error.message || 'Failed to fetch data');
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 

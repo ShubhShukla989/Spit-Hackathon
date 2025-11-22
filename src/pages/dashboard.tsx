@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getReceipts, getDeliveries, getDashboardKPIs } from '../services/supabaseApi';
+import { getReceipts, getDeliveries } from '../services/supabaseApi';
 import type { Receipt, Delivery } from '../services/supabaseApi';
 
 export const DashboardPage: React.FC = () => {

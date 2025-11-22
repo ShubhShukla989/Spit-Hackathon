@@ -31,18 +31,18 @@ export const DeliveryDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const { addNotification } = useUIStore();
   const [delivery, setDelivery] = useState<any | null>(null);
-  const [products, setProducts] = useState<any[]>([]);
+  // const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [deliveriesData, productsData] = await Promise.all([
+        const [deliveriesData, _productsData] = await Promise.all([
           getDeliveries(),
           getProducts(),
         ]);
         
-        setProducts(productsData);
+        // setProducts(productsData);
 
         if (id === 'new') {
           setDelivery({

@@ -28,18 +28,18 @@ export const ReceiptDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const { addNotification } = useUIStore();
   const [receipt, setReceipt] = useState<any | null>(null);
-  const [products, setProducts] = useState<any[]>([]);
+  // const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [receiptsData, productsData] = await Promise.all([
+        const [receiptsData, _productsData] = await Promise.all([
           getReceipts(),
           getProducts(),
         ]);
         
-        setProducts(productsData);
+        // setProducts(productsData);
 
         if (id === 'new') {
           setReceipt({

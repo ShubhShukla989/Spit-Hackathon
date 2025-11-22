@@ -51,8 +51,8 @@ export const getStockAlerts = async (): Promise<StockAlert[]> => {
     });
     
     // Sort by severity (critical first)
-    return alerts.sort((a, b) => {
-      const severityOrder = { critical: 0, warning: 1, info: 2 };
+    return alerts.sort((a: StockAlert, b: StockAlert) => {
+      const severityOrder: Record<string, number> = { critical: 0, warning: 1, info: 2 };
       return severityOrder[a.severity] - severityOrder[b.severity];
     });
   } catch (error) {

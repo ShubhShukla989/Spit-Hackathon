@@ -4,7 +4,6 @@ import { Table } from '../../components/Table';
 import { Button } from '../../components/Button';
 import { Modal } from '../../components/Modal';
 import { Input } from '../../components/Input';
-import { BackButton } from '../../components/BackButton';
 import { KanbanToggle } from '../../components/KanbanToggle';
 import { useUIStore } from '../../stores/uiStore';
 import { getStockLevels } from '../../services/supabaseApi';
@@ -246,7 +245,7 @@ export const StockPage: React.FC = () => {
           isOpen={showModal}
           onClose={() => {
             setShowModal(false);
-            setSelectedProduct(null);
+            // setSelectedProduct(null);
             setAdjustmentQty('');
           }}
           title="Adjust Stock"
@@ -256,7 +255,7 @@ export const StockPage: React.FC = () => {
                 variant="secondary"
               onClick={() => {
                 setShowModal(false);
-                setSelectedProduct(null);
+                // setSelectedProduct(null);
                 setAdjustmentQty('');
               }}
             >

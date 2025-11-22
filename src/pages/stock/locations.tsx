@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from '../../components/Table';
 import { Select } from '../../components/Select';
-import { BackButton } from '../../components/BackButton';
 import { KanbanToggle } from '../../components/KanbanToggle';
 import { useUIStore } from '../../stores/uiStore';
 import { getStockLevels, getProducts } from '../../services/supabaseApi';
 
-interface StockByLocation {
-  id: string;
-  productName: string;
-  productSku: string;
-  location: string;
-  onHand: number;
-  reserved: number;
-  available: number;
-}
 
 export const StockByLocationPage: React.FC = () => {
   const { addNotification } = useUIStore();
@@ -138,7 +128,7 @@ export const StockByLocationPage: React.FC = () => {
                 {Array.from(new Set(filteredData.map(item => item.location?.name).filter(Boolean))).map((locationName) => {
                   const locationItems = filteredData.filter(item => item.location?.name === locationName);
                   const totalStock = locationItems.reduce((sum, item) => sum + (item.on_hand || 0), 0);
-                  const totalAvailable = locationItems.reduce((sum, item) => sum + (item.available || 0), 0);
+                  // const totalAvailable = locationItems.reduce((sum, item) => sum + (item.available || 0), 0);
                   
                   return (
                     <div key={locationName} className="bg-slate-50 rounded-lg p-4">

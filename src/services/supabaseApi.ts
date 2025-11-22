@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import { generateReceiptReference, generateDeliveryReference } from './referenceGenerator';
+// Reference generation is now done inline with timestamps
 
 export interface Product {
   id: string;

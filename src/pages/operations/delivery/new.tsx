@@ -96,7 +96,7 @@ export const NewDeliveryPage: React.FC = () => {
       const deliveryData = {
         partner: formData.partner,
         scheduled_date: formData.scheduled_date,
-        source_document: formData.source_document || null,
+        source_document: formData.source_document || undefined,
         location_id: formData.location_id,
         status: 'draft',
         lines: validLines.map(line => ({

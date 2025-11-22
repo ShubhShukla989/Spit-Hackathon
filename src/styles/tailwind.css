@@ -4,15 +4,15 @@
 
 @layer base {
   body {
-    @apply font-sans text-body text-slate-700 bg-slate-50;
+    @apply font-sans text-base text-slate-700 bg-slate-50;
   }
   
   h1 {
-    @apply text-h1 font-semibold text-slate-850;
+    @apply text-3xl font-semibold text-slate-900;
   }
   
   h2 {
-    @apply text-h2 font-semibold text-slate-850;
+    @apply text-2xl font-semibold text-slate-900;
   }
 }
 

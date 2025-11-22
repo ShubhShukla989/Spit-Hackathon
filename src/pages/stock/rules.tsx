@@ -4,7 +4,6 @@ import { Table } from '../../components/Table';
 import { Modal } from '../../components/Modal';
 import { Input } from '../../components/Input';
 import { Select } from '../../components/Select';
-import { BackButton } from '../../components/BackButton';
 import { KanbanToggle } from '../../components/KanbanToggle';
 import { useUIStore } from '../../stores/uiStore';
 import { 
