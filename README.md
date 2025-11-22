@@ -1,163 +1,253 @@
-# StockMaster - Inventory Management System
+# 🚀 StockMaster - Inventory Management System
 
-A production-grade inventory management frontend built with React, TypeScript, and Tailwind CSS following enterprise-level specifications.
+<div align="center">
 
-**UI Reference**: `/Users/adarshsharma/Documents/Odoo_Stock_Manager/StockMaster.pdf`
+## 🌐 **LIVE SITE**
+### **[https://stockmaster-gold.vercel.app](https://stockmaster-gold.vercel.app)**
 
-## Features
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge&logo=vercel)](https://stockmaster-gold.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/ShubhShukla989/Spit-Hackathon)
 
-- **Authentication**: 
-  - Login with "Remember me" checkbox and "Forgot password" link
-  - Signup with real-time password validation (8-16 chars, uppercase, digit, special char)
-- **Dashboard**: 
-  - Clickable summary cards with operation counts
-  - "X to receive" and "X to deliver" with late/waiting indicators
-  - Direct navigation to filtered lists
-- **Operations Management**:
-  - **Receipts**: Draft → Ready → Done workflow
-  - **Delivery**: Draft → Waiting → Ready → Done workflow with automatic stock checking
-  - Insufficient stock detection with red row highlighting
-  - Visual warnings and tooltips for stock issues
-- **Stock Management**: View and adjust product stock levels with modal interface
-- **Move History**: Track all inventory movements with IN/OUT color coding
-- **Settings**: Manage warehouses and locations with CRUD operations
-- **Print Functionality**: Clean printable views with signature lines
-- **Responsive Design**: Mobile-first with collapsible sidebar (260px dark slate)
-- **Accessibility**: WCAG compliant with keyboard navigation and ARIA labels
+---
 
-## Tech Stack
+**🎉 The site is LIVE and fully functional!**
 
-- **React 18** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS** for styling
-- **React Router** for navigation
-- **Zustand** for state management
-- **Mock API** with simulated latency and error handling
+</div>
 
-## Getting Started
+## 📋 Table of Contents
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Contributing](#contributing)
+
+## 🎯 About
+
+**StockMaster** is a comprehensive inventory management system built for modern warehouses and businesses. It provides real-time stock tracking, automated reordering, and detailed analytics to streamline your inventory operations.
+
+### Key Highlights
+- ✅ Real-time inventory tracking
+- ✅ Automated stock alerts and reordering
+- ✅ Receipt and delivery management
+- ✅ Kanban board views for better visualization
+- ✅ Move history tracking
+- ✅ Multi-warehouse support
+- ✅ Role-based access control
+
+## ✨ Features
+
+### 📦 Inventory Management
+- **Products Management**: Add, edit, delete products with categories
+- **Stock Levels**: Real-time stock tracking across multiple locations
+- **Stock Alerts**: Automated alerts for low stock items
+- **Reordering Rules**: Configure automatic reorder points
+
+### 📥 Operations
+- **Receipts**: Manage incoming inventory with validation
+- **Deliveries**: Track outgoing shipments
+- **Stock Adjustments**: Manual stock corrections
+- **Move History**: Complete audit trail of all stock movements
+
+### 📊 Visualization
+- **Kanban Views**: Visual boards for products, categories, and rules
+- **Dashboard**: Real-time KPIs and analytics
+- **Stock by Location**: Location-wise inventory distribution
+
+### 🔐 Authentication
+- **Secure Login/Signup**: Email-based authentication
+- **Password Reset**: OTP-based password recovery
+- **User Profiles**: Manage user information
+
+### 🎨 UI/UX
+- **Premium Theme**: Modern, professional design
+- **Responsive**: Works on desktop, tablet, and mobile
+- **Dark Mode Ready**: Eye-friendly interface
+- **Smooth Animations**: Delightful user experience
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **React Router** - Navigation
+- **Zustand** - State management
+
+### Backend
+- **Supabase** - Backend as a Service
+  - PostgreSQL database
+  - Authentication
+  - Real-time subscriptions
+  - Row Level Security (RLS)
+
+### Deployment
+- **Vercel** - Frontend hosting
+- **Supabase Cloud** - Database and backend
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+
+### Products Management
+![Products](https://via.placeholder.com/800x400?text=Products+Management)
+
+### Kanban View
+![Kanban](https://via.placeholder.com/800x400?text=Kanban+Board)
+
+## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js 16+ and npm
+- Node.js 18+ installed
+- npm or yarn package manager
+- Supabase account
 
 ### Installation
 
-```bash
-# Install dependencies
-npm install
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ShubhShukla989/Spit-Hackathon.git
+   cd Spit-Hackathon
+   ```
 
-# Start development server
-npm run dev
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Build for production
-npm run build
+3. **Set up environment variables**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-# Preview production build
-npm run preview
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-# Run linter
-npm run lint
+5. **Open your browser**
+   ```
+   http://localhost:5173
+   ```
 
-# Type check
-npm run typecheck
+## 🔑 Environment Variables
 
-# Run all checks (type + lint + tailwind + purple scan)
-npm run frontend-check
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_SUPABASE_URL` | Your Supabase project URL | `https://xxxxx.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anonymous key | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
 
-# Quick debug (starts server and opens browser)
-./scripts/run-debug.sh
+### Getting Supabase Credentials
+
+1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
+2. Select your project
+3. Go to **Settings** → **API**
+4. Copy **Project URL** and **anon/public key**
+
+## 📦 Deployment
+
+### Deploy to Vercel
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Go to [Vercel Dashboard](https://vercel.com)
+   - Click "New Project"
+   - Import your GitHub repository
+   - Add environment variables
+   - Click "Deploy"
+
+3. **Configure Supabase**
+   - Go to Supabase Dashboard → Authentication → URL Configuration
+   - Set **Site URL**: `https://your-app.vercel.app`
+   - Add **Redirect URLs**:
+     - `https://your-app.vercel.app/**`
+     - `https://your-app.vercel.app/reset-password`
+
+## 📖 Usage
+
+### Default Login Credentials
+```
+Email: demo@stockmaster.com
+Password: demo123
 ```
 
-## Project Structure
+### Quick Start Guide
+
+1. **Login** to the application
+2. **Add Products** from Stock → Products
+3. **Create Categories** to organize products
+4. **Set up Locations** for your warehouse
+5. **Configure Reorder Rules** for automatic alerts
+6. **Create Receipts** for incoming inventory
+7. **Create Deliveries** for outgoing shipments
+8. **Monitor** stock levels and alerts
+
+## 🗂️ Project Structure
 
 ```
-src/
-├── assets/           # Static assets (logos, illustrations)
-├── components/       # Reusable UI components
-├── pages/           # Page components
-│   ├── operations/  # Receipt and delivery pages
-│   └── settings/    # Warehouse and location pages
-├── services/        # API and utility services
-├── stores/          # Zustand state management
-├── styles/          # Global styles and Tailwind config
-└── utils/           # Helper functions
-
+Spit-Hackathon/
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── pages/           # Page components
+│   │   ├── stock/       # Stock management pages
+│   │   ├── operations/  # Operations pages
+│   │   └── settings/    # Settings pages
+│   ├── services/        # API services
+│   ├── stores/          # State management
+│   ├── styles/          # CSS and themes
+│   └── utils/           # Utility functions
+├── public/              # Static assets
+└── dist/               # Build output
 ```
 
-## Design System
+## 🤝 Contributing
 
-### Colors (No Purple Shades)
+Contributions are welcome! Please follow these steps:
 
-- Primary: `#0EA5A4` (Teal) - hover: `#0D938F`, active: `#0B7F7A`
-- Primary Dark: `#0B63A7` (Navy)
-- Slate shades: `#0F172A` (sidebar), `#1F2937`, `#334155`, `#94A3B8`, `#E6EEF8`
-- Danger: `#EF4444` - hover: `#DC2626`
-- Success: Green shades
-- Warning: Yellow shades
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Typography
+## 📝 License
 
-- H1: 28px (font-semibold)
-- H2: 20px (font-semibold)
-- Body: 14px
-- Small: 12px
-- Font: Inter
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Component Sizes
+## 👥 Authors
 
-- Button: sm (px-3 py-1.5), md (px-4 py-2), lg (px-5 py-3)
-- Sidebar: 260px width, dark slate (#0F172A)
-- Header: 64px height
-- Page padding: px-8 py-6
-- Card padding: p-5 (20px)
-- Section gap: mt-8
-- Field gap: gap-4
+- **Shubh Shukla** - [GitHub](https://github.com/ShubhShukla989)
 
-## Key Features
+## 🙏 Acknowledgments
 
-### Status Workflows
+- Built for SPIT Hackathon
+- Inspired by modern inventory management systems
+- UI/UX design inspired by premium SaaS applications
 
-**Receipts**: Draft → Ready → Done
+## 📞 Support
 
-**Deliveries**: Draft → Waiting → Ready → Done
-- Automatically moves to "Waiting" if product quantity exceeds available stock
+For support, email: support@stockmaster.com or open an issue on GitHub.
 
-### Mock API
+---
 
-All API calls include:
-- 300-800ms simulated latency
-- 5% error rate for testing error handling
-- Full CRUD operations for all entities
+<div align="center">
 
-### Print Functionality
+**Made with ❤️ for SPIT Hackathon**
 
-All detail pages support clean printing with:
-- Hidden navigation elements
-- Optimized layout for paper
-- Professional formatting
+⭐ Star this repo if you find it helpful!
 
-## Development
-
-### Adding New Pages
-
-1. Create page component in `src/pages/`
-2. Add route in `src/App.tsx`
-3. Update sidebar navigation in `src/components/Sidebar.tsx`
-
-### Mock Data
-
-Edit `src/services/mockApi.ts` to modify mock data or add new endpoints.
-
-### Styling
-
-- Use Tailwind utility classes
-- Follow the design system colors
-- Maintain responsive design patterns
-
-## Testing Checklist
-
-See `docs/FRONTEND_CHECKLIST.md` for comprehensive QA steps.
-
-## License
-
-MIT
+</div>
