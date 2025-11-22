@@ -37,11 +37,11 @@ export const LoginPage: React.FC = () => {
     
     setLoading(true);
     try {
-      await login(email);
+      await login(email, password);
       addNotification('success', 'Login successful');
       navigate('/dashboard');
-    } catch (error) {
-      addNotification('error', 'Login failed. Please try again.');
+    } catch (error: any) {
+      addNotification('error', error.message || 'Login failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -85,9 +85,9 @@ export const LoginPage: React.FC = () => {
                 />
                 <span className="text-sm text-slate-700">Remember me</span>
               </label>
-              <a href="#" className="text-sm text-primary hover:underline">
+              <Link to="/forgot-password" className="text-sm text-primary hover:underline">
                 Forgot password?
-              </a>
+              </Link>
             </div>
             
             <Button

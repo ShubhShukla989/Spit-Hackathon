@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { supabase } from '../lib/supabase';
 
 interface User {
   id: string;
@@ -10,44 +11,120 @@ interface User {
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string) => Promise<void>;
-  signup: (email: string, name: string) => Promise<void>;
-  logout: () => void;
+  loading: boolean;
+  initialize: () => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string, name: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isAuthenticated: false,
+  loading: true,
   
-  login: async (email: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    const user: User = {
-      id: '1',
-      email,
-      name: email.split('@')[0],
-      role: 'admin',
-    };
-    
-    set({ user, isAuthenticated: true });
+  initialize: async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session?.user) {
+        const { data: userData } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
+        
+        if (userData) {
+          set({
+            user: {
+              id: userData.id,
+              email: userData.email,
+              name: userData.full_name,
+              role: userData.role,
+            },
+            isAuthenticated: true,
+            loading: false,
+          });
+        } else {
+          set({ loading: false });
+        }
+      } else {
+        set({ loading: false });
+      }
+    } catch (error) {
+      console.error('Auth initialization error:', error);
+      set({ loading: false });
+    }
   },
   
-  signup: async (email: string, name: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    const user: User = {
-      id: '1',
+  login: async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      name,
-      role: 'user',
-    };
+      password,
+    });
     
-    set({ user, isAuthenticated: true });
+    if (error) throw error;
+    
+    if (data.user) {
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', data.user.id)
+        .single();
+      
+      if (userError) {
+        console.error('User fetch error:', userError);
+        set({
+          user: {
+            id: data.user.id,
+            email: data.user.email!,
+            name: data.user.email!.split('@')[0],
+            role: 'warehouse_staff',
+          },
+          isAuthenticated: true,
+        });
+      } else if (userData) {
+        set({
+          user: {
+            id: userData.id,
+            email: userData.email,
+            name: userData.full_name,
+            role: userData.role,
+          },
+          isAuthenticated: true,
+        });
+      }
+    }
   },
   
-  logout: () => {
+  signup: async (email: string, password: string, name: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+        },
+      },
+    });
+    
+    if (error) throw error;
+    
+    if (data.user) {
+      set({
+        user: {
+          id: data.user.id,
+          email: data.user.email!,
+          name,
+          role: 'warehouse_staff',
+        },
+        isAuthenticated: true,
+      });
+    }
+  },
+  
+  logout: async () => {
+    await supabase.auth.signOut();
     set({ user: null, isAuthenticated: false });
   },
 }));

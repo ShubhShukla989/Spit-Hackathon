@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'danger' | 'success' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   iconLeft?: React.ReactNode;
@@ -19,19 +19,20 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const base = 'inline-flex items-center justify-center font-medium rounded-md transition-all duration-150 select-none';
+  const base = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 select-none transform hover:scale-105 shadow-md hover:shadow-lg';
   
   const variants = {
-    primary: 'bg-[#0EA5A4] text-white hover:bg-[#0D938F] active:bg-[#0B7F7A] disabled:bg-gray-300 disabled:text-gray-500',
-    secondary: 'border border-slate-300 text-slate-700 hover:bg-slate-100 disabled:bg-slate-100',
-    danger: 'bg-[#EF4444] text-white hover:bg-[#DC2626] disabled:bg-gray-300',
-    ghost: 'text-slate-600 hover:bg-slate-100 disabled:text-gray-400',
+    primary: 'bg-[#1E293B] text-white border-2 border-[#D4A657] hover:bg-[#D4A657] hover:text-[#1E293B] disabled:bg-gray-300 disabled:border-gray-400',
+    secondary: 'bg-white border-2 border-[#D4A657] text-[#1E293B] hover:bg-[#FAF9F7] disabled:bg-slate-100',
+    success: 'bg-[#9CAFAA] text-white border-2 border-[#9CAFAA] hover:bg-[#8A9F9A] disabled:bg-gray-300',
+    danger: 'bg-[#E74C3C] text-white border-2 border-[#E74C3C] hover:bg-[#C0392B] disabled:bg-gray-300',
+    ghost: 'text-[#1E293B] hover:bg-[#FAF9F7] disabled:text-gray-400',
   };
 
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-5 py-3 text-base',
+    md: 'px-5 py-2.5 text-sm',
+    lg: 'px-6 py-3 text-base',
   };
 
   return (

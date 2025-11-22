@@ -92,22 +92,23 @@ export const LocationPage: React.FC = () => {
   }
 
   return (
-    <div className="px-8 py-6">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-[28px] font-semibold mb-2">Locations</h1>
-          <p className="text-slate-600">Manage storage locations</p>
+    <div className="min-h-screen bg-sand">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-navy mb-2">📍 Locations</h1>
+            <p className="text-slate-600 font-medium">Manage storage locations</p>
+          </div>
+          <Button variant="primary" onClick={() => setShowModal(true)}>
+            ➕ New Location
+          </Button>
         </div>
-        <Button variant="primary" onClick={() => setShowModal(true)}>
-          New Location
-        </Button>
-      </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200">
-        <Table columns={columns} data={locations} />
-      </div>
+        <div className="premium-container">
+          <Table columns={columns} data={locations} />
+        </div>
 
-      <Modal
+        <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         title="Create Location"
@@ -150,6 +151,7 @@ export const LocationPage: React.FC = () => {
           />
         </div>
       </Modal>
+      </div>
     </div>
   );
 };

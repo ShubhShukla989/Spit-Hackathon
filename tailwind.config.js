@@ -7,23 +7,43 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Premium Warehouse Theme
         primary: {
-          DEFAULT: '#0EA5A4',
-          dark: '#0B63A7',
+          navy: '#1E293B',
+          DEFAULT: '#1E293B',
         },
-        slate: {
-          850: '#0F172A',
+        background: {
+          sand: '#FAF9F7',
+          DEFAULT: '#FAF9F7',
         },
-        danger: '#EF4444',
+        sidebar: {
+          stone: '#E2E8F0',
+          DEFAULT: '#E2E8F0',
+        },
+        accent: {
+          gold: '#D4A657',
+          sage: '#9CAFAA',
+          DEFAULT: '#D4A657',
+        },
+        chart: {
+          navy: '#2C3E50',
+          gold: '#F1C40F',
+        },
+        // Semantic colors
+        success: '#9CAFAA',
+        danger: '#E74C3C',
+        warning: '#F1C40F',
+        info: '#2C3E50',
       },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      borderRadius: {
+        'card': '12px',
       },
-      fontSize: {
-        h1: '28px',
-        h2: '20px',
-        body: '14px',
-        small: '12px',
+      boxShadow: {
+        'card': '0 4px 12px rgba(0,0,0,0.07)',
+        'card-hover': '0 8px 24px rgba(0,0,0,0.12)',
+      },
+      transitionDuration: {
+        'smooth': '250ms',
       },
     },
   },

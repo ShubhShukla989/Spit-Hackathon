@@ -1,88 +1,86 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from '../components/Table';
 import { Badge } from '../components/Badge';
-import { getMoveHistory } from '../services/mockApi';
-import type { MoveHistoryEntry } from '../services/mockApi';
+import { useUIStore } from '../stores/uiStore';
+import { getMoveHistory } from '../services/supabaseApi';
 import { formatDate } from '../utils/formatters';
 
 export const MoveHistoryPage: React.FC = () => {
-  const [moves, setMoves] = useState<MoveHistoryEntry[]>([]);
+  const { addNotification } = useUIStore();
+  const [moves, setMoves] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMoves = async () => {
-      try {
-        const data = await getMoveHistory();
-        setMoves(data);
-      } catch (error) {
-        console.error('Failed to fetch move history:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchMoves();
   }, []);
+
+  const fetchMoves = async () => {
+    try {
+      const data = await getMoveHistory();
+      setMoves(data);
+    } catch (error: any) {
+      console.error('Failed to fetch move history:', error);
+      addNotification('error', error.message || 'Failed to fetch move history');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const columns = [
     {
       key: 'reference',
       header: 'Reference',
-      render: (move: MoveHistoryEntry) => (
+      render: (move: any) => (
         <span className="font-medium text-slate-850">{move.reference}</span>
       ),
     },
     {
       key: 'product',
       header: 'Product',
-      render: (move: MoveHistoryEntry) => move.product,
+      render: (move: any) => move.product_name || 'N/A',
     },
     {
       key: 'type',
       header: 'Type',
-      render: (move: MoveHistoryEntry) => (
-        <Badge variant={move.type === 'in' ? 'success' : 'danger'}>
-          {move.type === 'in' ? 'IN' : 'OUT'}
+      render: (move: any) => (
+        <Badge variant={move.quantity_change > 0 ? 'success' : 'danger'}>
+          {move.operation_type?.toUpperCase() || 'N/A'}
         </Badge>
       ),
     },
     {
       key: 'quantity',
       header: 'Quantity',
-      render: (move: MoveHistoryEntry) => (
+      render: (move: any) => (
         <span
           className={`font-medium ${
-            move.type === 'in' ? 'text-green-600' : 'text-red-600'
+            move.quantity_change > 0 ? 'text-green-600' : 'text-red-600'
           }`}
         >
-          {move.type === 'in' ? '+' : '-'}
-          {move.quantity}
+          {move.quantity_change > 0 ? '+' : ''}
+          {move.quantity_change}
         </span>
       ),
     },
     {
-      key: 'from',
-      header: 'From',
-      render: (move: MoveHistoryEntry) => move.from,
+      key: 'location',
+      header: 'Location',
+      render: (move: any) => move.location_name || 'N/A',
     },
     {
-      key: 'to',
-      header: 'To',
-      render: (move: MoveHistoryEntry) => move.to,
+      key: 'warehouse',
+      header: 'Warehouse',
+      render: (move: any) => move.warehouse_name || 'N/A',
     },
     {
       key: 'date',
       header: 'Date',
-      render: (move: MoveHistoryEntry) => formatDate(move.date),
+      render: (move: any) => formatDate(move.created_at),
     },
     {
-      key: 'status',
-      header: 'Status',
-      render: (move: MoveHistoryEntry) => (
-        <Badge variant={move.status === 'Done' ? 'success' : 'info'}>
-          {move.status}
-        </Badge>
-      ),
+      key: 'user',
+      header: 'User',
+      render: (move: any) => move.created_by_name || 'System',
     },
   ];
 
@@ -95,14 +93,16 @@ export const MoveHistoryPage: React.FC = () => {
   }
 
   return (
-    <div className="px-8 py-6">
-      <div className="mb-8">
-        <h1 className="text-[28px] font-semibold mb-2">Move History</h1>
-        <p className="text-slate-600">Track all inventory movements</p>
-      </div>
+    <div className="min-h-screen bg-sand">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-navy mb-2">📜 Move History</h1>
+          <p className="text-slate-600 font-medium">Track all inventory movements</p>
+        </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200">
-        <Table columns={columns} data={moves} emptyMessage="No moves recorded" />
+        <div className="premium-container">
+          <Table columns={columns} data={moves} emptyMessage="No moves recorded" />
+        </div>
       </div>
     </div>
   );

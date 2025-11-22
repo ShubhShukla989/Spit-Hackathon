@@ -29,15 +29,16 @@ export function Table<T extends { id: string }>({
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-slate-200">
-        <thead className="bg-slate-50">
+    <div className="overflow-x-auto rounded-xl border-[1.5px] border-[#D4A657]">
+      <table className="min-w-full">
+        <thead style={{ backgroundColor: '#1E293B' }}>
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
+                className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider"
+                style={{ color: '#FFFFFF' }}
                 aria-sort={column.sortable ? 'none' : undefined}
               >
                 {column.header}
@@ -45,17 +46,33 @@ export function Table<T extends { id: string }>({
             ))}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-slate-200">
-          {data.map((item) => (
+        <tbody>
+          {data.map((item, index) => (
             <tr
               key={item.id}
               onClick={() => onRowClick?.(item)}
-              className={onRowClick ? 'cursor-pointer hover:bg-slate-50 transition-colors' : ''}
+              className={`transition-all duration-300 ${onRowClick ? 'cursor-pointer' : ''}`}
+              style={{ 
+                backgroundColor: index % 2 === 0 ? '#FFFFFF' : '#F8F5F2',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(212,166,87,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = index % 2 === 0 ? '#FFFFFF' : '#F8F5F2';
+              }}
               tabIndex={onRowClick ? 0 : undefined}
               onKeyDown={onRowClick ? (e) => e.key === 'Enter' && onRowClick(item) : undefined}
             >
               {columns.map((column) => (
-                <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-slate-700">
+                <td 
+                  key={column.key} 
+                  className="px-6 py-4 text-sm"
+                  style={{ 
+                    color: '#1E293B',
+                    borderTop: '1px solid #D4A657'
+                  }}
+                >
                   {column.render(item)}
                 </td>
               ))}
