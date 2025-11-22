@@ -7,10 +7,13 @@
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge&logo=vercel)](https://stockmaster-gold.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/ShubhShukla989/Spit-Hackathon)
+[![Video Demo](https://img.shields.io/badge/Video-Prototype-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1FWyeLTM-uOYFP813cxLkDKypqftFBZXf/view?usp=sharing)
 
 ---
 
 **🎉 The site is LIVE and fully functional!**
+
+### 🎥 [Watch Video Prototype](https://drive.google.com/file/d/1FWyeLTM-uOYFP813cxLkDKypqftFBZXf/view?usp=sharing)
 
 </div>
 
